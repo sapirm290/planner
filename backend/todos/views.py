@@ -5,6 +5,6 @@ from django.http import HttpResponse
 #     return render(request, 'todos/index.html')
 
 # get todos
-def get_todos(request):
+def get_items(request):
     pass
-# create new todo
+    # create new todo

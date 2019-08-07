@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'todos',
 ]
 
@@ -124,3 +125,11 @@ STATICFILES_DIRS = (
     os.path.join(FE_BUILD_DIR,  "static"),  # update the STATICFILES_DIRS
 )
 STATIC_ROOT= os.path.join(FE_BUILD_DIR, )
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
