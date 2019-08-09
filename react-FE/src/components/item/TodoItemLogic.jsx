@@ -40,13 +40,15 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = (state, props) => {
-    let taskObject = state.todos.find(element => element.features.index === props.index)
+    let taskObject = state.items.find(element => element.id === props.id)
+    console.log(taskObject)
     return taskObject
 }
 
-const TodoItemWrapper = connect(
+const TodoItemLogic = connect(
     mapStateToProps,
     mapDispatchToProps
 )(TodoItem)
 
-export default TodoItemWrapper
+
+export default TodoItemLogic
