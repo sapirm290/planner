@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ItemCreationPanel from './ItemCreationPanel'
+import AddItem from './AddItem'
 
 const ADD = "ADD"
 const addItemAction = (itemAsObject) => {
@@ -13,9 +13,9 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const ItemCreationContainer = connect(
+const AddItemLogic = connect(
     null,
     mapDispatchToProps
-)(ItemCreationPanel)
+)(AddItem)
 
-export default ItemCreationContainer
+export default AddItemLogic

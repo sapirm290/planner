@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import AppHeader from './AppHeader'
+import Header from './Header'
 
 const SAVE = "SAVE"
 const LOAD = "LOAD"
@@ -17,9 +17,9 @@ const mapDispatchToProps = dispatch => {
       }
   }
 }
-const ConnectedAppHeader = connect(
+const ConnectedHeader = connect(
   mapDispatchToProps,
   mapStateToProps
-)(AppHeader)
+)(Header)
 
-export default ConnectedAppHeader
+export default ConnectedHeader

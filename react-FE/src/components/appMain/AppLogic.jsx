@@ -3,7 +3,7 @@ import AppVisual from './AppVisual';
 
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-import '../utils/webUtils'
+import '../../utils/webUtils'
 const REMOVE = "REMOVE"
 const SETDONE = "SETDONE"
 const SETSTARRED = "SETSTARRED"
@@ -14,7 +14,7 @@ const SAVELS = "SAVELS"
 const LOADLS = "LOADLS"
 const SETAPPSTATE = "SETAPPSTATE"
 
-const AppContainer = () => {
+const AppLogic = () => {
     const initialState = {
         // taskIndex: 1,
         appStatus: 'loading',
@@ -122,4 +122,4 @@ const AppContainer = () => {
     )
 }
 
-export default AppContainer
+export default AppLogic

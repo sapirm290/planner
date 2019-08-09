@@ -1,13 +1,11 @@
 import React from 'react';
-import AppContainer from './appMain/AppContainer'
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import teal from '@material-ui/core/colors/teal';
 import blueGrey from '@material-ui/core/colors/blueGrey';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import LoginPage from './LoginPage'
+import AppRouter from './AppRouter'
 
-function AppTheme() {
+function Theme() {
   const theme = createMuiTheme({
     palette: {
       primary: teal,
@@ -16,14 +14,10 @@ function AppTheme() {
   });
 
   return (
-    <Router>
       <MuiThemeProvider theme={theme}>
-        <Route exact path="/" component={AppContainer} />
-        <Route path="/login" component={LoginPage} />
+        <AppRouter/>
       </MuiThemeProvider>
-    </Router>
-
   );
 }
 
-export default AppTheme;
+export default Theme;

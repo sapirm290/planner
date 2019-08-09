@@ -6,9 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import AppHeaderContainer from "../AppHeaderContainer"
+import HeaderLogic from "../header/HeaderLogic"
 import TodoItemLogic from '../item/TodoItemLogic'
-import ItemCreationContainer from '../itemCreation/ItemCreationContainer';
+import ItemCreationContainer from '../itemCreation/AddItemLogic';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,9 +40,9 @@ function AppVisual({ listsForRendering, saveItems, loadItems }) {
 
     return (
         <React.Fragment>
-            <AppHeaderContainer >
+            <HeaderLogic >
 
-            </AppHeaderContainer>
+            </HeaderLogic>
             {/* <Drawer
                 className={classes.drawer}
                 classes={{

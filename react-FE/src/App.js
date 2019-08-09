@@ -1,11 +1,11 @@
 import React from 'react';
-import AppTheme from './components/AppTheme'
+import Theme from './appWide/Theme'
 
 function App() {
     return (
-        <AppTheme>
-        </AppTheme>
+        <Theme>
+        </Theme>
     );
 }
 
-export default AppTheme;
+export default App;
