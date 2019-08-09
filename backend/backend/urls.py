@@ -25,10 +25,11 @@ from rest_framework import routers, serializers, viewsets
 class TodoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Todo
-        fields = ['title', 'description']
+        fields = ['id','title', 'description', 'time_added', 'deadline', 'is_archived']
 
 # ViewSets define the view behavior.
 class TodoViewSet(viewsets.ModelViewSet):
+    
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
@@ -42,6 +43,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('todos/', include('todos.urls')),
     path('', TemplateView.as_view(template_name="index.html"))
 ]
