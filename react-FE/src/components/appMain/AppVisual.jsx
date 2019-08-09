@@ -7,7 +7,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import HeaderLogic from "../header/HeaderLogic"
-import TodoItemLogic from '../item/TodoItemLogic'
+import ItemLogic from '../item/ItemLogic'
 import ItemCreationContainer from '../itemCreation/AddItemLogic';
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +34,7 @@ function AppVisual({ listsForRendering, saveItems, loadItems }) {
     for (let index = 0; index < listsForRendering.length; index++) {
         console.log(listsForRendering[index].id)
         lists.push(
-            <TodoItemLogic id={listsForRendering[index].id} key={listsForRendering[index].id} />
+            <ItemLogic id={listsForRendering[index].id} key={listsForRendering[index].id} />
         )
     }
 

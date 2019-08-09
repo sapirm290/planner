@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import TodoItem from './TodoItem'
+import Item from './Item'
 
 const REMOVE = "REMOVE"
 const SETDONE = "SETDONE"
@@ -45,10 +45,10 @@ const mapStateToProps = (state, props) => {
     return taskObject
 }
 
-const TodoItemLogic = connect(
+const ItemLogic = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TodoItem)
+)(Item)
 
 
-export default TodoItemLogic
+export default ItemLogic
