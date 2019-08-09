@@ -40,9 +40,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = (state, props) => {
-    let taskObject = state.items.find(element => element.id === props.id)
-    console.log(taskObject)
-    return taskObject
+    return props.item
 }
 
 const ItemLogic = connect(

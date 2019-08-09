@@ -28,21 +28,19 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function AppVisual({ listsForRendering, saveItems, loadItems }) {
+function AppVisual({ shownItems }) {
     const classes = useStyles();
-    const lists = [];
-    for (let index = 0; index < listsForRendering.length; index++) {
-        console.log(listsForRendering[index].id)
-        lists.push(
-            <ItemLogic id={listsForRendering[index].id} key={listsForRendering[index].id} />
+    const items = [];
+    for (let index = 0; index < shownItems.length; index++) {
+        console.log(shownItems[index])
+        items.push(
+            <ItemLogic item={shownItems[index]} key={shownItems[index].id} />
         )
     }
 
     return (
         <React.Fragment>
-            <HeaderLogic >
-
-            </HeaderLogic>
+            <HeaderLogic />
             {/* <Drawer
                 className={classes.drawer}
                 classes={{
@@ -65,10 +63,10 @@ function AppVisual({ listsForRendering, saveItems, loadItems }) {
             <Container className={classes.root} maxWidth="md" >
 
                 <Box variant="contained" color="secondary" p={3} >
-                    <Typography variant="h5" color="primary" className={classes.title}> To-do :</Typography>
-                    {lists}
+                    <Typography variant="h5" color="primary" className={classes.title}> Items :</Typography>
+                    {items}
                 </Box>
-                
+
             </Container>
         </React.Fragment>
     )
