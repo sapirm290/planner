@@ -27,9 +27,9 @@ export default function AppHeader({appStatus, saveItems,loadItems}) {
             3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M16.53,11.06L15.47,10L10.59,14.88L8.47,
             12.76L7.41,13.82L10.59,17L16.53,11.06Z" />
           </SvgIcon>
-            {(appStatus == 'fine')?null: <Typography variant="h6" color="initial">Status:{appStatus}</Typography>}
-            <Button onClick={saveItems}>Save in local storage</Button>
-                <Button onClick={loadItems}>Load</Button>
+            {/* {(appStatus == 'fine')?null: <Typography variant="h6" color="initial">Status:{appStatus}</Typography>} */}
+            {/* <Button onClick={saveItems}>Save in local storage</Button>
+                <Button onClick={loadItems}>Load</Button> */}
         </Toolbar>
       </AppBar>
     </div>

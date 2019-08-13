@@ -25,7 +25,7 @@ from rest_framework import routers, serializers, viewsets
 class TodoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Todo
-        fields = ['id','title', 'description', 'time_added', 'deadline', 'is_archived']
+        fields = ['user','id','title', 'description', 'time_added', 'deadline', 'is_archived']
 
 # ViewSets define the view behavior.
 class TodoViewSet(viewsets.ModelViewSet):

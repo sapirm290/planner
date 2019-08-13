@@ -1,14 +1,13 @@
 import { connect } from 'react-redux'
 import AddItem from './AddItem'
-
-const ADD = "ADD"
-const addItemAction = (itemAsObject) => {
-    return { item: itemAsObject, type: ADD }
-}
+import { addItem } from '../../actions/itemsActions'
+// const addItemAction = (itemAsObject) => {
+//     return { item: itemAsObject, type: ADD }
+// }
 const mapDispatchToProps = dispatch => {
     return {
         addItem: (itemAsObject) => {
-            dispatch(addItemAction(itemAsObject))
+            dispatch(() => addItem(dispatch, itemAsObject))
         }
     }
 }

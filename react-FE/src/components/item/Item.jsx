@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
 const DIVSTYLE = { margin: "4px", borderRadius: "10px", backgroundColor: "#b0bec5" }
 
 
-const TodoItem = ({ is_fav, id, title, description, time_added, removeItem, setItemDone, setItemStarred }) => {
+const TodoItem = (item, setItemDone) => {
+    console.log(setItemDone)
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
@@ -44,22 +45,19 @@ const TodoItem = ({ is_fav, id, title, description, time_added, removeItem, setI
         <div style={DIVSTYLE}>
             <ListItem button classes={{ container: classes.li }} onClick={handleClick}>
                 {open ? <ExpandLess /> : <ExpandMore />}
-                <ListItemText primary={`${title} :  Today at ${'hour'}:${'hour'}`} />
+                <ListItemText primary={`${item.title} :  Today at ${item.deadline}`} />
                 <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="Delete" onClick={() => removeItem(id)}>
+                    <IconButton edge="end" aria-label="Delete" onClick={() => (item.id)}>
                         <DeleteIcon />
                     </IconButton>
-                    <Button variant="contained" color="primary" onClick={() => setItemDone(id)}>"Done!"</Button>
+                    <Button variant="contained" color="primary" onClick={(item) => (setItemDone(item))}>"Done!"</Button>
                 </ListItemSecondaryAction>
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <ListItem button onClick={handleClick} classes={{ container: classes.li }}>
-                    <ListItemText primary={`${description} ${'days'}/${'months'}/${'years'}`} />
+                    <ListItemText primary={`${item.description} Added at: ${item.time_added}`} />
                     <ListItemSecondaryAction>
-                        <IconButton onClick={() => setItemStarred(id)}>
-                            <SvgIcon>
-                                <path fill={is_fav ? "#FFD700" : "#FFFFFF"} d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                            </SvgIcon>
+                        <IconButton onClick={() => (item.id)}>
                         </IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>
