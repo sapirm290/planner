@@ -4,8 +4,6 @@ import { loadItems } from '../../actions/itemsActions'
 
 
 const mapStateToProps = (state) => {
-    console.log('state is:')
-    console.log(state)
     return { shownItems: state.items }
 }
 const mapDispatchToProps = dispatch => {

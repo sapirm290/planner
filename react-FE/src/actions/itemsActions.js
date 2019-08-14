@@ -3,7 +3,7 @@ import { getCookie } from '../utils/webUtils'
 
 export const loadItems = dispatch => {
 
-    fetch("api/items", {
+    fetch("api/items/", {
         method: "get",
         headers: {
             "Accept": "application/json",
@@ -11,15 +11,14 @@ export const loadItems = dispatch => {
     }).then(function (response) {
         return response.json();
     }).then(function (data) {
-        dispatch({ type: LOADITEMS, items: data });
+        data = Array.isArray(data)? data: []
+        dispatch( { type: LOADITEMS, items: data });
     }).catch(function (ex) {
         console.log("parsing failed", ex);
     });
 
 }
 export const addItem = (dispatch, item) => {
-    console.log('item')
-    console.log(item)
     fetch("api/items/", {
         method: "post",
         credentials: "same-origin",
@@ -27,8 +26,8 @@ export const addItem = (dispatch, item) => {
             "X-CSRFToken": getCookie("csrftoken"),
             "Accept": "application/json",
             "Content-Type": "application/json",
-            body: JSON.stringify(item),
-        }
+        },
+        body: JSON.stringify(item),
     }).then(function (response) {
         return response.json();
     }).then(function (data) {
@@ -38,4 +37,21 @@ export const addItem = (dispatch, item) => {
     });
 
 }
+export const deleteItem = (dispatch, id) => {
+    fetch(`api/items/${id}/`, {
+        method: "delete",
+        credentials: "same-origin",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        }
+    }).then(function (response) {
+        return response;
+    }).then(function (data) {
+        dispatch(loadItems);
+    }).catch(function (ex) {
+        console.log("parsing failed", ex);
+    });
 
+}
