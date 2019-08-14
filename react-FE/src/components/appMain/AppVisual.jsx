@@ -33,12 +33,6 @@ function AppVisual({loadItems, shownItems }) {
     const items = [];
     useEffect(loadItems,[null]);
 
-    for (let index = 0; index < shownItems.length; index++) {
-        items.push(
-            <ItemLogic item={shownItems[index]} key={shownItems[index].id} />
-        )
-    }
-
     return (
         <React.Fragment>
             <HeaderLogic />
@@ -49,7 +43,6 @@ function AppVisual({loadItems, shownItems }) {
                 }}
                 variant="permanent">
                 <List>
-                    DSAKfnjakj
                     {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -63,7 +56,8 @@ function AppVisual({loadItems, shownItems }) {
 
                 <Box variant="contained" color="secondary" p={3} >
                     <Typography variant="h5" color="primary" className={classes.title}> Items :</Typography>
-                    {items}
+                    {/* {items} */}
+                    {shownItems.map(item => <ItemLogic item={item} key={item.id} />)}
                 </Box>
 
             </Container>
