@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Item from './Item'
+import { deleteItem } from '../../actions/itemsActions'
 
 // const REMOVE = "REMOVE"
 // const UPDATEITEM = "UPDATEITEM"
@@ -31,30 +32,20 @@ import Item from './Item'
 //         index: index
 //     }
 // }
-const mapDispatchToProps = dispatch => {
-    return {
-        // removeItem: (index) => {
-
-        //     dispatch(removeItemAction(index))
-        // },
-        // setItemDone: (index) => {
-
-        //     dispatch(setItemDoneAction(index))
-        // },
-        // setItemStarred: (index) => {
-
-        //     dispatch(setItemStarredAction(index))
-        // }
-    }
-}
 
 const mapStateToProps = (state, props) => {
     return props.item
 }
-
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteItem: (itemId) => {
+            dispatch(() => deleteItem(dispatch, itemId))
+        }
+    }
+}
 const ItemLogic = connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(Item)
 
 

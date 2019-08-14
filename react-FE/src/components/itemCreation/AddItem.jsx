@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
         height: '48px'
     },
     input: {
-        margin: "10px"
+        margin: "20px",
+        color: 'white'
     }
 }));
 
@@ -31,48 +32,50 @@ const useStyles = makeStyles(theme => ({
 //     days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
 //         18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
 //     years: [2018, 2019, 2020, 2021, 2022]
-// };
-const HOUROPTIONS = []
-const MINUTEOPTIONS = []
-for (let index = 0; index < 24; index++) {
-    HOUROPTIONS.push(
-        <MenuItem key={"hours" + index} value={`${('0' + index).slice(-2)}`}>{`${('0' + index).slice(-2)}`}</MenuItem>
-    )
-}
-for (let index = 0; index < 61; index++) {
-    MINUTEOPTIONS.push(
-        <MenuItem key={"minutes" + index} value={`${('0' + index).slice(-2)}`}>{`${('0' + index).slice(-2)}`}</MenuItem>
-    )
-}
+// // };
+// const HOUROPTIONS = []
+// const MINUTEOPTIONS = []
+// for (let index = 0; index < 24; index++) {
+//     HOUROPTIONS.push(
+//         <MenuItem key={"hours" + index} value={`${('0' + index).slice(-2)}`}>{`${('0' + index).slice(-2)}`}</MenuItem>
+//     )
+// }
+// for (let index = 0; index < 61; index++) {
+//     MINUTEOPTIONS.push(
+//         <MenuItem key={"minutes" + index} value={`${('0' + index).slice(-2)}`}>{`${('0' + index).slice(-2)}`}</MenuItem>
+//     )
+// }
 
 const ItemCreation = ({ addItem, children }) => {
-    let currentTime = new Date()
     const classes = useStyles();
     const [item, setItem] = useState({
-        id: 3,
-        title: 'a title',
-        description : "a description"
+        title: 'sample title',
+        description: "sample description"
     })
-    const handleChange = (e, property, subProperty) => {
-        setItem({ ...item, [property]: { ...item[property], [subProperty]: e.target.value } })
+    const handleChange = (e, property) => {
+        setItem({ ...item, [property]: e.target.value })
     }
     return (
         <div>
             <Paper classes={{ root: classes.paper }} className={classes.root} p={3} m={2}>
-                {/* <FormControl classes={{ root: classes.input }}>
-                    <InputLabel htmlFor="summary">Task: </InputLabel>
-                    <Input onChange={(e) => { handleChange(e, "content", "summary") }}
+                <FormControl classes={{ root: classes.input, base: classes.input }}>
+                    <InputLabel htmlFor="title">Item: </InputLabel>
+                    <Input  onChange={(e) => { handleChange(e, "title") }}
+                        value={item.title} placeholder={"What do I want to do?..."}
+                        input={<Input name="title" id="title" />}
+                    />
+                </FormControl>
+                <FormControl>
+
+                    <InputLabel htmlFor="description">Description</InputLabel>
+                    <Input  onChange={(e) => { handleChange(e, "description") }}
                         value={item.description} placeholder={"What do I want to do?..."}
-                        input={<Input name="summary" id="summary" />}
-                    /> */}
-                    {/* <FormControl>
-                        <InputLabel htmlFor="my-input">Email address</InputLabel>
-                        <Input id="my-input" aria-describedby="my-helper-text" />
-                    </FormControl> */}
-                {/* </FormControl>
-                <FormControl classes={{ root: classes.input }}>
-                    <InputLabel htmlFor="hours">Hour</InputLabel> */}
-                    {/* <Select
+                        input={<Input name="description" id="description" />}
+                    />
+                </FormControl>
+                {/* // <FormControl classes={{ root: classes.input }}>
+        //     <InputLabel htmlFor="hours">Hour</InputLabel> */}    
+                {/* <Select
                         value={item.time.hours}
                         onChange={(e) => { handleChange(e, "time", "hours") }}
                         input={<Input id="hours" />} autoWidth   >
@@ -81,7 +84,7 @@ const ItemCreation = ({ addItem, children }) => {
                 {/* </FormControl>
                 <FormControl classes={{ root: classes.input }} >
                     <InputLabel htmlFor="minutes">Minute</InputLabel> */}
-                    {/* <Select
+                {/* <Select
                         value={item.time.minutes}
                         onChange={(e) => { handleChange(e, "time", "minutes") }}
                         input={<Input id="minutes" />}  >
@@ -91,7 +94,7 @@ const ItemCreation = ({ addItem, children }) => {
                 <Button classes={{ root: classes.button }} variant="contained" color="primary" onClick={() => { addItem(item) }}>Add Item</Button>
             </Paper>
             <div>{children}</div>
-        </div>
+        </div >
     )
 }
 export default ItemCreation
