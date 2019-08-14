@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+<html lang="en">
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href='{% static "css/login.css" %}'>
+<title>Biko's Billboard</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="login-page">
+
+    <form class="register-form" role="form" action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+
+        <div class="row">
+            <span class="text-danger small"> </span>
+        </div>
+
+        <div class="row">
+            <span class="text-danger small"> </span>
+        </div>
+
+        <div class="row">
+            <span class="text-danger small"> </span>
+        </div>
+
+
+        {{form.as_p}}
+        <!-- <span><label for="id_username">Username:</label></span><br>
+        <input id="id_username" maxlength="100" name="username" type="text" required />
+
+        <span><label for="id_password1">Password:</label></span><br>
+        <input id="id_password1" name="password1" type="password" required />
+
+        <span><label for="id_password2">Password Confirmation:</label></span><br>
+        <input id="id_password2" name="password2" type="password" required /> -->
+
+        <button type="submit" class="btn btn-success">Submit</button>
+        <p class="message">Already registered? <a href="accounts/login">Sign In</a></p>
+    </form>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="{% static '/js/javascript.js' %}"></script>
+{% endblock %}
+</body>
+
+
+</html>
+
+
+
+<!-- 
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+
+    <input type="submit" value="login">
+    <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p><a href="{% url 'signup' %}">Register?</a></p>
+ -->
