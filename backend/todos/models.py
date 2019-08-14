@@ -13,5 +13,10 @@ class Todo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 # will be added: Topic(in a board)
 
-# class Category(models.Model):
-#     name = models.CharField(max_length = 40, null=False)
+# class Tag(models.Model):
+#     item = models.ForeignKey(Todo, on_delete=models.CASCADE)
+#     tag = models.ForeignKey(TagType, on_delete=models.CASCADE)
+# class TagType(models.Model):
+#     name = models.CharField(max_length=30)
+#     color = models.CharField(max_length=30)
+
