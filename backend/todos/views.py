@@ -9,9 +9,6 @@ from django.views.generic import TemplateView
 
 
 class TodoViewSet(viewsets.ViewSet):
-
-    # queryset = Todo.objects.all()
-    # serializer_class = TodoSerializer
     permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
         return Todo.objects.filter(user=self.request.user)

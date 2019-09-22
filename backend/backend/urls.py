@@ -20,7 +20,6 @@ from django.conf import settings
 from todos.models import Todo
 from rest_framework import routers, serializers, viewsets
 from todos.views import TodoViewSet
-# Serializers define the API representation.
 from django.contrib.auth.models import User
 
 # class UserSerializer(serializers.ModelSerializer):
@@ -44,7 +43,7 @@ router.register('items', TodoViewSet, basename='')
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    # path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),

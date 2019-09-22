@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-<html lang="en">
 {% block head %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href='{% static "css/login.css" %}'>
@@ -36,7 +35,7 @@
             <button type="submit" class="btn btn-success">Submit</button>
             <input type="hidden" name="next" value="{{ next }}">
 
-            <p class="message">Not registered? <a href="{% url 'signup' %}">Create an account</a></p>
+            <!-- <p class="message">Not registered? <a href="{% url 'signup' %}">Create an account</a></p> -->
         </form>
     </div>
 </div>
