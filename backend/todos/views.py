@@ -28,7 +28,6 @@ class TodoViewSet(viewsets.ViewSet):
         serializer.save(user=self.request.user)
 
 
-@login_required
 def index(request):
     print('get to index function')
     return render(request, "index.html")

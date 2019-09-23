@@ -10,7 +10,7 @@ class Todo(models.Model):
     time_added = models.DateTimeField(default=timezone.now)
     deadline = models.DateTimeField(default=timezone.now)
     is_archived = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE, null=True)
 # will be added: Topic(in a board)
 
 # class Tag(models.Model):

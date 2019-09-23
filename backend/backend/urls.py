@@ -17,35 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
-from todos.models import Todo
+from todos.views import index as fed_index
 from rest_framework import routers, serializers, viewsets
-from todos.views import TodoViewSet
 from django.contrib.auth.models import User
 
-# class UserSerializer(serializers.ModelSerializer):
-#     todos = serializers.PrimaryKeyRelatedField(many=True, queryset=Todos.objects.all())
-
-#     class Meta:
-#         model = User
-#         fields = ['id', 'username', 'todos']
-
-# ViewSets define the view behavior.
-
-
-
-
-
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register('items', TodoViewSet, basename='')
-# router.register('users', UserViewSet)
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(router.urls)),
-    path('admin/', admin.site.urls),
-    path('', include('todos.urls'))
+    path('', fed_index),
+    path('', include('todos.urls')),
+    path('', include('accounts.urls'))
 ]
