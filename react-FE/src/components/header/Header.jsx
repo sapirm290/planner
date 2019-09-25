@@ -5,6 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { Button } from '@material-ui/core';
+import { Link } from "react-router-dom";
+import { logout } from "../../actions/auth";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -12,10 +15,42 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AppHeader({appStatus, saveItems,loadItems}) {
+function AppHeader(props) {
   const classes = useStyles();
   const [state, setstate] = useState({time: new Date()})
   setInterval(() => setstate({time: new Date()}) ,1000)
+
+  const { isAuthenticated, user } = props.auth;  
+  const authLinks = (
+    <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+      <span className="navbar-text mr-3">
+        <strong>{user ? `Welcome ${user.username}` : ""}</strong>
+      </span>
+      <li className="nav-item">
+        <button
+          onClick={props.logout}
+          className="nav-link btn btn-info btn-sm text-light"
+        >
+          Logout
+        </button>
+      </li>
+    </ul>
+  );
+
+  const guestLinks = (
+    <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li className="nav-item">
+        <Link to="/register" className="nav-link">
+          Register
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link to="/login" className="nav-link">
+          Login
+        </Link>
+      </li>
+    </ul>
+  );
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">
@@ -32,6 +67,7 @@ export default function AppHeader({appStatus, saveItems,loadItems}) {
           <Typography variant="h6" color="initial">
              {state.time.getHours()}:{(state.time.getMinutes()<10?'0':'') + state.time.getMinutes() }
           </Typography>
+          {isAuthenticated ? authLinks : guestLinks}
             {/* {(appStatus == 'fine')?null: <Typography variant="h6" color="initial">Status:{appStatus}</Typography>} */}
             {/* <Button onClick={saveItems}>Save in local storage</Button>
                 <Button onClick={loadItems}>Load</Button> */}
@@ -40,3 +76,12 @@ export default function AppHeader({appStatus, saveItems,loadItems}) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(AppHeader);

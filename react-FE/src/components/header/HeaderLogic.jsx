@@ -5,7 +5,7 @@ const SAVE = "SAVE"
 const LOAD = "LOAD"
 
 const mapStateToProps = (state) => {
-  return {appStatus: state.appStatus}
+  return { appStatus: state.appStatus }
 }
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 //   }
 // }
 const ConnectedHeader = connect(
- null,
+  null,
   mapStateToProps
 )(Header)
 

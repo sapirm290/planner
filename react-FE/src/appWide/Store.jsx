@@ -1,21 +1,24 @@
-import React from 'react'
-import { createStore, applyMiddleware } from 'redux'
+import React, { useEffect } from 'react'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { Provider} from 'react-redux'
-import AppLogic from '../components/appMain/AppLogic';
-import rootReducer from '../reducers/rootReducer'
+import { Provider } from 'react-redux'
+import Theme from './Theme';
+import rootReducer from '../reducers/root'
+import { loadUser } from '../actions/auth'
 
 const Store = () => {
 
 
-    const store = createStore(rootReducer, applyMiddleware(
-        thunkMiddleware
+    const store = createStore(rootReducer, compose(
+        applyMiddleware(thunkMiddleware),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
+    useEffect(() => { store.dispatch(loadUser()) }, [])
 
 
     return (
         <Provider store={store}>
-            <AppLogic />
+            <Theme />
         </Provider>
     )
 

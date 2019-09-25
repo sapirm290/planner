@@ -1,18 +1,12 @@
 import AppVisual from './AppVisual';
 import { connect } from 'react-redux'
-import { loadItems } from '../../actions/itemsActions'
+import { getTodos } from '../../actions/items'
 
 
 const mapStateToProps = (state) => {
-    return { shownItems: state.items }
+    return { items: state.items }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        loadItems: () => {
-            dispatch(loadItems)
-        },
-    }
-}
+const mapDispatchToProps = dispatch => ({ getTodos })
 
 export default connect(
     mapStateToProps,

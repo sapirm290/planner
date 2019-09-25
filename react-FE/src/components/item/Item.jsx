@@ -23,7 +23,7 @@ import { ExpandMore, ExpandLess } from '@material-ui/icons';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import { deleteItem } from '../../actions/itemsActions';
+import { deleteItem } from '../../actions/items';
 
 const useStyles = makeStyles(theme => ({
     li: {

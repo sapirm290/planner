@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Item from './Item'
-import { deleteItem } from '../../actions/itemsActions'
+import { deleteTodo } from '../../actions/items'
 
 // const REMOVE = "REMOVE"
 // const UPDATEITEM = "UPDATEITEM"
@@ -39,7 +39,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
     return {
         deleteItem: (itemId) => {
-            dispatch(() => deleteItem(dispatch, itemId))
+            dispatch(() => deleteTodo(dispatch, itemId))
         }
     }
 }

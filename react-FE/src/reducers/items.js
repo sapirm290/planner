@@ -1,11 +1,9 @@
-import { LOADITEMS } from '../actions/actionTypes'
-let initialState = {
-    items: []
-}
-const itemsReducer = (state = initialState, action) => {
+import { GET_TODOS } from '../actions/types'
+
+const itemsReducer = (state = [], action) => {
     switch (action.type) {
-        case LOADITEMS:
-            return { ...state, items: action.items }
+        case GET_TODOS:
+            return action.payload
         // case (ADD):
         //     newState = Object.assign({}, state)
         //     newState.items.push({

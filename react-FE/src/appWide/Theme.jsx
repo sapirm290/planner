@@ -3,7 +3,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import teal from '@material-ui/core/colors/teal';
 import blueGrey from '@material-ui/core/colors/blueGrey';
-import AppRouter from './AppRouter'
+import AppRouter from '../components/appMain/AppRouter'
 
 function Theme() {
   const theme = createMuiTheme({
@@ -14,9 +14,9 @@ function Theme() {
   });
 
   return (
-      <MuiThemeProvider theme={theme}>
-        <AppRouter/>
-      </MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <AppRouter />
+    </MuiThemeProvider>
   );
 }
 

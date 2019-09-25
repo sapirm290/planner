@@ -28,14 +28,14 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function AppVisual({loadItems, shownItems }) {
+function AppVisual({ getTodos, items }) {
     const classes = useStyles();
-    const items = [];
-    useEffect(loadItems,[null]);
+    console.log('appvisual', getTodos)
+    console.log('appvisual', items)
+    useEffect(getTodos, [null]);
 
     return (
         <React.Fragment>
-            <HeaderLogic />
             {/* <Drawer
                 className={classes.drawer}
                 classes={{
@@ -51,13 +51,13 @@ function AppVisual({loadItems, shownItems }) {
                     ))} */}
             {/* </List>
             </Drawer> */}
-            <AddItemLogic/>
+            <AddItemLogic />
             <Container className={classes.root} maxWidth="md" >
 
                 <Box variant="contained" color="secondary" p={3} >
                     <Typography variant="h5" color="primary" className={classes.title}> Items :</Typography>
                     {/* {items} */}
-                    {shownItems.map(item => <ItemLogic item={item} key={item.id} />)}
+                    {items.map(item => <ItemLogic item={item} key={item.id} />)}
                 </Box>
 
             </Container>
