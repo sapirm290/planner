@@ -30,9 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 function AppVisual({ getTodos, items }) {
     const classes = useStyles();
-    console.log('appvisual', getTodos)
-    console.log('appvisual', items)
-    useEffect(getTodos, [null]);
+    useEffect(getTodos, []);
 
     return (
         <React.Fragment>

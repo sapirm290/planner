@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 //     )
 // }
 
-const ItemCreation = ({ addItem, children }) => {
+const ItemCreation = ({ addTodo, children }) => {
     const classes = useStyles();
     const [item, setItem] = useState({
         title: 'sample title',
@@ -58,40 +58,42 @@ const ItemCreation = ({ addItem, children }) => {
     return (
         <div>
             <Paper classes={{ root: classes.paper }} className={classes.root} p={3} m={2}>
-                <FormControl classes={{ root: classes.input, base: classes.input }}>
-                    <InputLabel htmlFor="title">Item: </InputLabel>
-                    <Input  onChange={(e) => { handleChange(e, "title") }}
-                        value={item.title} placeholder={"What do I want to do?..."}
-                        input={<Input name="title" id="title" />}
-                    />
-                </FormControl>
-                <FormControl>
+                <form onSubmit={() => { addTodo(item) }}>
+                    <FormControl >
+                        <InputLabel htmlFor="title">Item: </InputLabel>
+                        <Input onChange={(e) => { handleChange(e, "title") }}
+                            value={item.title} placeholder={"What do I want to do?..."}
+                            input={<Input name="title" id="title" />}
+                        />
+                    </FormControl>
+                    <FormControl>
 
-                    <InputLabel htmlFor="description">Description</InputLabel>
-                    <Input  onChange={(e) => { handleChange(e, "description") }}
-                        value={item.description} placeholder={"What do I want to do?..."}
-                        input={<Input name="description" id="description" />}
-                    />
-                </FormControl>
-                {/* // <FormControl classes={{ root: classes.input }}>
-        //     <InputLabel htmlFor="hours">Hour</InputLabel> */}    
-                {/* <Select
+                        <InputLabel htmlFor="description">Description</InputLabel>
+                        <Input onChange={(e) => { handleChange(e, "description") }}
+                            value={item.description} placeholder={"What do I want to do?..."}
+                            input={<Input name="description" id="description" />}
+                        />
+                    </FormControl>
+                    {/* // <FormControl classes={{ root: classes.input }}>
+        //     <InputLabel htmlFor="hours">Hour</InputLabel> */}
+                    {/* <Select
                         value={item.time.hours}
                         onChange={(e) => { handleChange(e, "time", "hours") }}
                         input={<Input id="hours" />} autoWidth   >
                         {HOUROPTIONS}
                     </Select> */}
-                {/* </FormControl>
+                    {/* </FormControl>
                 <FormControl classes={{ root: classes.input }} >
                     <InputLabel htmlFor="minutes">Minute</InputLabel> */}
-                {/* <Select
+                    {/* <Select
                         value={item.time.minutes}
                         onChange={(e) => { handleChange(e, "time", "minutes") }}
                         input={<Input id="minutes" />}  >
                         {MINUTEOPTIONS}
                     </Select> */}
-                {/* </FormControl> */}
-                <Button classes={{ root: classes.button }} variant="contained" color="primary" onClick={() => { addItem(item) }}>Add Item</Button>
+                    {/* </FormControl> */}
+                    <Button type='submit' classes={{ root: classes.button }} variant="contained" color="primary">Add Item</Button>
+                </form>
             </Paper>
             <div>{children}</div>
         </div >

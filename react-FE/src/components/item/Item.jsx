@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 const DIVSTYLE = { margin: "4px", borderRadius: "10px", backgroundColor: "#b0bec5" }
 
 
-const TodoItem = ({ item, deleteItem }) => {
+const TodoItem = ({ item, deleteTodo }) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
@@ -47,7 +47,7 @@ const TodoItem = ({ item, deleteItem }) => {
                 {open ? <ExpandLess /> : <ExpandMore />}
                 <ListItemText primary={`${item.title}`} />
                 <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="Delete" onClick={() => deleteItem(item.id)}>
+                    <IconButton edge="end" aria-label="Delete" onClick={() => deleteTodo(item.id)}>
                         <DeleteIcon />
                     </IconButton>
                     {/* <Button variant="contained" color="primary" onClick={(item) => (setItemDone(item))}>"Done!"</Button> */}

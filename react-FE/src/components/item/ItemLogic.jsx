@@ -36,16 +36,16 @@ import { deleteTodo } from '../../actions/items'
 const mapStateToProps = (state, props) => {
     return props.item
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        deleteItem: (itemId) => {
-            dispatch(() => deleteTodo(dispatch, itemId))
-        }
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         deleteItem: (itemId) => {
+//             dispatch(() => deleteTodo(dispatch, itemId))
+//         }
+//     }
+// }
 const ItemLogic = connect(
     mapStateToProps,
-    mapDispatchToProps
+    { deleteTodo }
 )(Item)
 
 
