@@ -1,9 +1,15 @@
-import { GET_TODOS } from '../actions/types'
+import { GET_TODOS, CLEAR_TODOS, ADD_TODO, DELETE_TODO } from '../actions/types'
 
 const itemsReducer = (state = [], action) => {
     switch (action.type) {
         case GET_TODOS:
             return action.payload
+        case CLEAR_TODOS:
+            return []
+        case DELETE_TODO:
+            return state.filter(todo => todo.id !== action.payload)
+        case ADD_TODO:
+            return [...state, action.payload];
         // case (ADD):
         //     newState = Object.assign({}, state)
         //     newState.items.push({

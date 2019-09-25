@@ -12,7 +12,7 @@ function AppRouter() {
     <Router>
       <Fragment>
         <Header />
-        {/* <Alerts /> */}
+        <Alerts />
         <Switch>
           <PrivateRoute exact path="/" component={AppLogic} />
           <Route path="/register" component={Register} />

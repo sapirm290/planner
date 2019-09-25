@@ -9,7 +9,6 @@ import { GET_TODOS, ADD_TODO, DELETE_TODO } from "./types";
 
 // GET LEADS
 export const getTodos = () => (dispatch, getState) => {
-    console.log('inside get todos')
     axios
         .get("/api/todos", tokenConfig(getState))
         .then(res => {
@@ -34,7 +33,9 @@ export const deleteTodo = id => (dispatch, getState) => {
                 payload: id
             });
         })
-        .catch(err => console.log(err));
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status))
+        );
 };
 
 // ADD LEAD

@@ -6,9 +6,9 @@ import { getTodos } from '../../actions/items'
 const mapStateToProps = (state) => {
     return { items: state.items }
 }
-const mapDispatchToProps = dispatch => ({ getTodos })
+// const mapDispatchToProps = dispatch => ({ getTodos: dispatch(getTodos) })
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    { getTodos }
 )(AppVisual)
