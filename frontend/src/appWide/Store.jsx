@@ -9,15 +9,18 @@ import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
 const alertOptions = {
-    timeout: 3000,
+    timeout: 2000,
     position: "top center"
 };
 
 const Store = () => {
-    const store = createStore(rootReducer, compose(
+    // const store = createStore(rootReducer, compose(
+    //     applyMiddleware(thunkMiddleware),
+    //     window.devToolsExtension ? window.devToolsExtension() : f => f
+    // ));
+    const store = createStore(rootReducer,
         applyMiddleware(thunkMiddleware),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
-    ));
+    );
     useEffect(() => { store.dispatch(loadUser()) }, [])
 
 
