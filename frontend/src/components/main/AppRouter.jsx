@@ -1,11 +1,11 @@
-import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Fragment } from 'react';
-import AppLogic from './AppLogic'
-import Register from '../accounts/Register'
-import Login from '../accounts/Login'
+import DashboarContainer from './DashboarContainer'
+import Register from '../auth/Register'
+import Login from '../auth/Login'
 import PrivateRoute from '../common/PrivateRoute'
 import Header from '../header/Header'
-import Alerts from "../../components/Alerts";
+import Alerts from "../Alerts";
 
 function AppRouter() {
   return (
@@ -14,7 +14,7 @@ function AppRouter() {
         <Header />
         <Alerts />
         <Switch>
-          <PrivateRoute exact path="/" component={AppLogic} />
+          <PrivateRoute exact path="/" component={DashboarContainer} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>

@@ -6,9 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import HeaderLogic from "../header/HeaderLogic"
-import ItemLogic from '../item/ItemLogic'
-import AddItemLogic from '../itemCreation/AddItemLogic';
+import ItemLogic from '../item/ItemContainer'
+import AddItemLogic from '../createItem/AddItemContainer';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function AppVisual({ getTodos, items }) {
+function Dashboard({ getTodos, items }) {
     const classes = useStyles();
     useEffect(getTodos, []);
 
@@ -63,4 +62,4 @@ function AppVisual({ getTodos, items }) {
     )
 }
 
-export default AppVisual
+export default Dashboard

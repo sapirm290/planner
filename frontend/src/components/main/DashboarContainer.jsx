@@ -1,4 +1,4 @@
-import AppVisual from './AppVisual';
+import Dashboard from './Dashboard';
 import { connect } from 'react-redux'
 import { getTodos } from '../../actions/items'
 
@@ -11,4 +11,4 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     { getTodos }
-)(AppVisual)
+)(Dashboard)
