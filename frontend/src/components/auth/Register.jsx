@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { register } from "../../actions/auth";
 import { createMessage } from "../../actions/messages";
 import { connect } from "react-redux";
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Container, Button, InputLabel, Input, FormControl, Typography } from '@material-ui/core';
+
+
+
 
 const Register = (props) => {
+
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,61 +33,52 @@ const Register = (props) => {
         return <Redirect to="/" />;
     }
     return (
-        <div className="col-md-6 m-auto">
-            <div className="card card-body mt-5">
-                <h2 className="text-center">Register</h2>
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            onChange={e => { setUsername(e.target.value) }}
-                            value={username}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            onChange={e => { setEmail(e.target.value) }}
-                            value={email}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            onChange={e => { setPassword(e.target.value) }}
-                            value={password}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Confirm Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password2"
-                            onChange={e => { setPassword2(e.target.value) }}
-                            value={password2}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary">
-                            Register
-                </button>
-                    </div>
-                    <p>
-                        Already have an account? <Link to="/login">Login</Link>
-                    </p>
-                </form>
-            </div>
-        </div>
+
+        <Container maxWidth="md" >
+            <Box variant="contained" color="secondary" p={3} >
+                <Typography variant='h4'>Register</Typography>
+                <FormControl >
+                    <InputLabel htmlFor="username">Username: </InputLabel>
+                    <Input onChange={e => { setUsername(e.target.value) }} type='text'
+                        value={username} placeholder={"your username goes here"}
+                        input={<Input name="username" />}
+                    />
+                </FormControl>
+                <br />
+                <FormControl >
+                    <InputLabel htmlFor="email">Email: </InputLabel>
+                    <Input onChange={e => { setEmail(e.target.value) }} type='email'
+                        value={email} placeholder={"your email goes here"}
+                        input={<Input name="email" />}
+                    />
+                </FormControl>
+                <br />
+                <FormControl >
+                    <InputLabel htmlFor="password">Password: </InputLabel>
+                    <Input onChange={e => { setPassword(e.target.value) }} type='password'
+                        value={password} placeholder={"your password goes here"}
+                        input={<Input name="password" />}
+                    />
+                </FormControl>
+                <br />
+                <FormControl >
+                    <InputLabel htmlFor="password2">Password2: </InputLabel>
+                    <Input onChange={e => { setPassword2(e.target.value) }} type='password2'
+                        value={password2} placeholder={"your password2 goes here"}
+                        input={<Input name="password2" />}
+                    />
+                </FormControl>
+                <Button variant="contained" color="secondary" onClick={onSubmit}>Register</Button>
+                <br />
+                <br />
+
+                <Typography style={{ marginTop: '40px' }}>Already have an account?   </Typography>
+                <Button variant="contained" color="secondary" href='/#/Login' >Login
+                </Button>
+
+
+            </Box>
+        </Container>
     );
 }
 

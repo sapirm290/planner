@@ -4,9 +4,9 @@ import { getTodos } from '../../actions/items'
 
 
 const mapStateToProps = (state) => {
-    return { items: state.items }
+
+    return { items: state.items.filter(item => (item.title.includes(state.search) || item.description.includes(state.search))) }
 }
-// const mapDispatchToProps = dispatch => ({ getTodos: dispatch(getTodos) })
 
 export default connect(
     mapStateToProps,

@@ -1,30 +1,23 @@
-import React, { useEffect } from 'react'
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import React, { useEffect, Fragment } from 'react'
+import { Box, Container, ListItem, ListItemIcon, ListItemText, Drawer, List } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+import MailIcon from '@material-ui/icons/Mail';
+import InboxIcon from '@material-ui/icons/Inbox';
 import ItemLogic from '../item/ItemContainer'
 import AddItemLogic from '../createItem/AddItemContainer';
-
+import NavDrawer from '../navDrawer/NavDrawer'
+import CssBaseline from '@material-ui/core/CssBaseline';
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '100%',
+
         color: "white"
     },
     title: {
         fontWeight: 550
     },
-    drawer: {
-        width: 240,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: 240,
-    },
-
+    headerMargin: {
+        marginTop: theme.spacing(8)
+    }
 }));
 
 function Dashboard({ getTodos, items }) {
@@ -32,33 +25,17 @@ function Dashboard({ getTodos, items }) {
     useEffect(getTodos, []);
 
     return (
-        <React.Fragment>
-            {/* <Drawer
-                className={classes.drawer}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                variant="permanent">
-                <List>
-                    {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))} */}
-            {/* </List>
-            </Drawer> */}
-            <AddItemLogic />
-            <Container className={classes.root} maxWidth="md" >
-
+        <Fragment>
+            <CssBaseline />
+            <NavDrawer />
+            <Container className={`${classes.root} ${classes.headerMargin}`} maxWidth="md" >
                 <Box variant="contained" color="secondary" p={3} >
-                    <Typography variant="h5" color="primary" className={classes.title}> Items :</Typography>
-                    {/* {items} */}
                     {items.map(item => <ItemLogic item={item} key={item.id} />)}
-                </Box>
+                    <AddItemLogic />
 
+                </Box>
             </Container>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

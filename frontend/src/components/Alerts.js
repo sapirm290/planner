@@ -1,10 +1,16 @@
-import React, { Component, Fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useAlert } from 'react-alert'
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 // import PropTypes from "prop-types";
 
 
-const Alerts = ({ error, message }) => {
+const Alerts = () => {
+    const notifications = useSelector(state => ({
+        error: state.errors,
+        message: state.messages
+    }))
+    const error = notifications.error;
+    const message = notifications.message;
     const alert = useAlert()
     const showError = (error) => {
         if (error.msg.name) alert.error(`Name: ${error.msg.name.join()}`);
@@ -21,17 +27,17 @@ const Alerts = ({ error, message }) => {
         if (message.addTodo) alert.success(message.addTodo);
         if (message.passwordNotMatch) alert.error(message.passwordNotMatch);
     }
-    useEffect(() => { showError(error) }, [error])
-    useEffect(() => { showMessage(message) }, [message])
+    // useEffect(() => { showError(error) }, [error])
+    // useEffect(() => { showMessage(message) }, [message])
     return (
         <Fragment />
     )
 }
+export default Alerts
 
+// const mapStateToProps = state => ({
+//     error: state.errors,
+//     message: state.messages
+// });
 
-const mapStateToProps = state => ({
-    error: state.errors,
-    message: state.messages
-});
-
-export default connect(mapStateToProps)(Alerts);
+// export default connect(mapStateToProps)(Alerts);

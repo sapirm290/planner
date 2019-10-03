@@ -24,13 +24,13 @@ const theme = createMuiTheme({
         secondary: blueGrey
     }
 });
-// const store = createStore(rootReducer, compose(
-//     applyMiddleware(thunkMiddleware),
-//     window.devToolsExtension ? window.devToolsExtension() : f => f
-// ));
-const store = createStore(rootReducer,
+const store = createStore(rootReducer, compose(
     applyMiddleware(thunkMiddleware),
-);
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+// const store = createStore(rootReducer,
+//     applyMiddleware(thunkMiddleware),
+// );
 
 function App() {
     useEffect(() => { store.dispatch(loadUser()) }, [])

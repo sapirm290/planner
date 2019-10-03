@@ -1,99 +1,97 @@
 import React, { useState } from 'react'
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import { Paper, Button, InputLabel, Input, FormControl } from '@material-ui/core';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles(theme => ({
     paper: {
         backgroundColor: theme.palette.secondary.light,
-        height: "100px",
+        padding: "15px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        position: 'fixed',
+        bottom: '0%',
     },
     button: {
-        height: '48px'
+        height: theme.spacing(6)
+    },
+    margin: {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2)
     },
     input: {
-        margin: "20px",
-        color: 'white'
+        fontWeight: '500'
     }
 }));
 
-// let date_utils = {
-//     months: ["January", "February", "March", "April", "May", "June", "July",
-//         "August", "September", "October", "November", "December"],
-//     days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-//         18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-//     years: [2018, 2019, 2020, 2021, 2022]
-// // };
-// const HOUROPTIONS = []
-// const MINUTEOPTIONS = []
-// for (let index = 0; index < 24; index++) {
-//     HOUROPTIONS.push(
-//         <MenuItem key={"hours" + index} value={`${('0' + index).slice(-2)}`}>{`${('0' + index).slice(-2)}`}</MenuItem>
-//     )
-// }
-// for (let index = 0; index < 61; index++) {
-//     MINUTEOPTIONS.push(
-//         <MenuItem key={"minutes" + index} value={`${('0' + index).slice(-2)}`}>{`${('0' + index).slice(-2)}`}</MenuItem>
-//     )
-// }
 
 const ItemCreation = ({ addTodo, children }) => {
     const classes = useStyles();
     const [item, setItem] = useState({
-        title: 'sample title',
-        description: "sample description"
+        title: '',
+        description: '',
+        deadline: new Date()
+
     })
-    const handleChange = (e, property) => {
+    const handleChange = (property) => (e) => {
         setItem({ ...item, [property]: e.target.value })
+    }
+    function handleDateChange(date) {
+        setItem({ ...item, deadline: date });
+    }
+    const handleSubmit = () => {
+        addTodo(item)
+        setItem({
+            title: '',
+            description: '',
+            deadline: new Date()
+        })
     }
     return (
         <div>
-            <Paper classes={{ root: classes.paper }} className={classes.root} p={3} m={2}>
-                <form onSubmit={() => { addTodo(item) }}>
-                    <FormControl >
-                        <InputLabel htmlFor="title">Item: </InputLabel>
-                        <Input onChange={(e) => { handleChange(e, "title") }}
-                            value={item.title} placeholder={"What do I want to do?..."}
-                            input={<Input name="title" id="title" />}
-                        />
-                    </FormControl>
-                    <FormControl>
+            <Paper classes={{ root: classes.paper }} className={classes.root} p={1} m={2}>
+                <FormControl className={classes.margin} >
+                    <InputLabel htmlFor="title">Item: </InputLabel>
+                    <Input className={classes.input} variant='outlined' autoFocus={true} onChange={handleChange("title")}
+                        value={item.title}
+                        input={<Input name="title" id="title" />}
+                    />
+                </FormControl>
+                <FormControl className={classes.margin}>
+                    <InputLabel htmlFor="description">Description</InputLabel>
+                    <Input className={classes.input} onChange={handleChange("description")}
+                        value={item.description}
+                        input={<Input name="description" id="description" />}
+                    />
+                </FormControl>
 
-                        <InputLabel htmlFor="description">Description</InputLabel>
-                        <Input onChange={(e) => { handleChange(e, "description") }}
-                            value={item.description} placeholder={"What do I want to do?..."}
-                            input={<Input name="description" id="description" />}
-                        />
-                    </FormControl>
-                    {/* // <FormControl classes={{ root: classes.input }}>
-        //     <InputLabel htmlFor="hours">Hour</InputLabel> */}
-                    {/* <Select
-                        value={item.time.hours}
-                        onChange={(e) => { handleChange(e, "time", "hours") }}
-                        input={<Input id="hours" />} autoWidth   >
-                        {HOUROPTIONS}
-                    </Select> */}
-                    {/* </FormControl>
-                <FormControl classes={{ root: classes.input }} >
-                    <InputLabel htmlFor="minutes">Minute</InputLabel> */}
-                    {/* <Select
-                        value={item.time.minutes}
-                        onChange={(e) => { handleChange(e, "time", "minutes") }}
-                        input={<Input id="minutes" />}  >
-                        {MINUTEOPTIONS}
-                    </Select> */}
-                    {/* </FormControl> */}
-                    <Button type='submit' classes={{ root: classes.button }} variant="contained" color="primary">Add Item</Button>
-                </form>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        className={`${classes.margin} ${classes.input}`}
+                        label="Deadline date"
+                        value={item.deadline}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                    <KeyboardTimePicker
+                        className={`${classes.margin} ${classes.input}`}
+                        label="Deadline time"
+                        value={item.deadline}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change time',
+                        }}
+                    />
+                </MuiPickersUtilsProvider>
+                <Button onClick={handleSubmit} classes={{ root: classes.button }} variant="contained" color="primary">Add Item</Button>
             </Paper>
             <div>{children}</div>
         </div >
